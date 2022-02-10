@@ -88,7 +88,8 @@ def on_click(key):
         for c, (char, color) in enumerate(zip(current_word, result)):
             all_labels[current_row][c]['bg'] = color
             char = all_labels[current_row][c]['text']
-            if all_buttons[char]['bg'] != COLOR_GREEN:
+            
+            if char in all_buttons and all_buttons[char]['bg'] != COLOR_GREEN:
                 all_buttons[char]['bg'] = color
                 
         if not status:
@@ -115,9 +116,25 @@ def on_click(key):
         else:
             label_message['text'] = 'too long'
 
+def on_keyrelease(event):
+    if event.keysym == 'Return':
+        on_click('ENTER')
+        return
+        
+    if event.keysym == 'BackSpace':
+        on_click('BACK')
+        return
+
+    for line in keyboard:
+        if event.keysym.lower() in line:
+            on_click(event.keysym.upper())
+            return
+    
+    print('not allowed:', event.keysym.upper())
+    
 # --- main ---
 
-words = ['banan', 'canon', 'kajak']
+words = open('dict-pl.txt').read().splitlines()
 
 # - (re)set data -
 
@@ -132,8 +149,11 @@ current_word = ''
 # -  -
 
 root = tk.Tk()
+
 root.title('PyWORDLE')
 root.resizable(False, False)
+root['padx'] = 15
+root['pady'] = 15
 
 default_color = root['bg']
 debug('bg:', default_color)
@@ -187,4 +207,5 @@ for line in keyboard:
         
 # - start -
 
+root.bind('<KeyRelease>', on_keyrelease)
 root.mainloop()
