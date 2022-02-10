@@ -22,6 +22,4 @@ COLOR_GREEN  = '#9BDB4D'
 COLOR_YELLOW = '#FFE16B'
 ```
 
-<div style="background-color: #ABABAB">#ABABAB</div>
-<div style="background-color: #9BDB4D">#9BDB4D</div>
-<div style="background-color: #FFE16B">#FFE16B</div>
+![colors](colors.png?raw=true) 
