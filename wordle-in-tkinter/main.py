@@ -1,12 +1,13 @@
 # author: Bartlomiej "furas" Burek (https://blog.furas.pl)
 # date: 2022.02.10
 
-import tkinter as tk
+import os
 import random
+import tkinter as tk
 
 # --- constants ---
 
-WORD_LENGTH = 5
+WORD_LENGTH = 4
 MAX_WORDS = 6
 
 COLOR_GREY   = '#ABABAB'
@@ -134,7 +135,10 @@ def on_keyrelease(event):
     
 # --- main ---
 
-words = open('dict-pl.txt').read().splitlines()
+BASE = os.path.dirname(os.path.abspath(__file__))
+
+dict_path = os.path.join(BASE, '..', 'dict', f'dict-pl-{WORD_LENGTH}.txt')
+words = open(dict_path).read().splitlines()
 
 # - (re)set data -
 
