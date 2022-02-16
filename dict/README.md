@@ -47,6 +47,7 @@ $ aspell -d pl dump master \
 
 English dictionary needs `grep -v "'s"` to skip words with `'s` at the end.
 
+
 Split words by length
 
 ```  
