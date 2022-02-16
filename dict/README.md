@@ -35,7 +35,7 @@ $ aspell -d pl dump master \
   > dict-pl.txt
 ```
 
-Split words by lenght
+Split words by length
 
 ```  
 $ egrep '^.{4}$' dict-pl.txt > dict-pl-4.txt
