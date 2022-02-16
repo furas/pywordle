@@ -12,6 +12,14 @@ Install `aspell` and Polish dictionary
 $ apt install aspell aspell-pl
 ```
 
+The same way you can install dictionary for other languages.
+
+```
+$ apt search aspell
+```
+
+---
+
 Create list of Polish words (with variations)
 
 ```
@@ -21,6 +29,7 @@ $ aspell -d pl dump master \
   | tr '[:upper:]' '[:lower:]' \
   | sort \
   | uniq \
+  | grep -v "'s" \  
   > dict-pl.txt
 ```
 
@@ -32,10 +41,13 @@ $ aspell -d pl dump master \
   | tr '[:upper:]' '[:lower:]' \
   | sort \
   | uniq \
+  | grep -v "'s" \  
   > dict-pl.txt
 ```
 
-Split words by lenght
+English dictionary needs `grep -v "'s"` to skip words with `'s` at the end.
+
+Split words by length
 
 ```  
 $ egrep '^.{4}$' dict-pl.txt > dict-pl-4.txt
